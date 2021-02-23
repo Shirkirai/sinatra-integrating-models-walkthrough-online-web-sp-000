@@ -7,7 +7,9 @@ class App < Sinatra::Base
   end
 
   post '/' do
-    text_from_user = params[:user_text]
+
+    @analyed_text = TestAnalyzer.new(params[:user_text])
+    @word_count = @analyzed_text.count_of_words
 
     erb :results
   end
